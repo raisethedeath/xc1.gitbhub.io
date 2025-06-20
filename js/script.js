@@ -287,3 +287,130 @@ async function saveVideos() {
     // 由于GitHub Pages是静态的，无法直接保存
     // 需要配合GitHub API或使用其他后端服务
 }
+
+// 渲染文档列表
+function renderDocumentList(category = 'all') {
+  const container = document.getElementById('documentsContainer');
+  container.innerHTML = '';
+  
+  // 获取所有文档
+  const allDocs = [];
+  courses.forEach(course => {
+    course.chapters.forEach(chapter => {
+      if (chapter.type !== 'video' && chapter.docPath) {
+        allDocs.push({
+          title: chapter.title,
+          path: chapter.docPath,
+          category: course.category || 'general',
+          course: course.title,
+          chapterId: chapter.id,
+          courseId: course.id
+        });
+      }
+    });
+  });
+  
+  // 过滤文档
+  const filteredDocs = category === 'all' 
+    ? allDocs 
+    : allDocs.filter(doc => doc.category === category);
+  
+  // 渲染文档卡片
+  filteredDocs.forEach(doc => {
+    const docCard = document.createElement('div');
+    docCard.className = 'doc-card';
+    docCard.innerHTML = `
+      <h3>${doc.title}</h3>
+      <p class="doc-meta">所属课程: ${doc.course} | 分类: ${doc.category}</p>
+      <button class="view-doc" data-path="${doc.path}" 
+              data-course-id="${doc.courseId}" 
+              data-chapter-id="${doc.chapterId}">
+        查看文档
+      </button>
+    `;
+    container.appendChild(docCard);
+  });
+  
+  // 添加文档查看事件
+  document.querySelectorAll('.view-doc').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const docPath = btn.dataset.path;
+      const courseId = btn.dataset.courseId;
+      const chapterId = btn.dataset.chapterId;
+      loadAndRenderDoc(docPath, courseId, chapterId);
+    });
+  });
+}
+
+// 加载并渲染Markdown文档
+async function loadAndRenderDoc(docPath, courseId, chapterId) {
+  try {
+    const response = await fetch(docPath);
+    const markdown = await response.text();
+    
+    // 使用marked解析Markdown
+    const htmlContent = marked.parse(markdown);
+    
+    // 获取当前章节的相关视频（如果有）
+    const course = courses.find(c => c.id === courseId);
+    const chapter = course.chapters.find(ch => ch.id === chapterId);
+    
+    let videoSection = '';
+    if (chapter && chapter.videoRef) {
+      videoSection = `
+        <div class="doc-video">
+          <h3>相关视频讲解</h3>
+          <video controls>
+            <source src="${chapter.videoRef}" type="video/mp4">
+          </video>
+          ${chapter.videoDescription ? `<p>${chapter.videoDescription}</p>` : ''}
+        </div>
+      `;
+    }
+    
+    // 组合内容
+    const fullContent = `
+      <div class="doc-header">
+        <h2>${chapter.title}</h2>
+        <p>所属课程: ${course.title}</p>
+      </div>
+      <div class="doc-body">
+        <div class="markdown-content">${htmlContent}</div>
+        ${videoSection}
+      </div>
+    `;
+    
+    document.getElementById('docContent').innerHTML = fullContent;
+    document.getElementById('docViewerModal').style.display = 'block';
+  } catch (error) {
+    console.error('加载文档失败:', error);
+    document.getElementById('docContent').innerHTML = `<p class="error">加载文档失败: ${error.message}</p>`;
+  }
+}
+
+// 关闭模态框
+document.querySelector('.close').addEventListener('click', () => {
+  document.getElementById('docViewerModal').style.display = 'none';
+});
+
+// 初始化文档页面
+if (window.location.pathname.includes('docs.html')) {
+  renderDocumentList();
+  
+  // 分类筛选
+  document.querySelectorAll('#categoryList li').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('#categoryList li').forEach(li => {
+        li.classList.remove('active');
+      });
+      item.classList.add('active');
+      renderDocumentList(item.dataset.category);
+    });
+  });
+  
+  // 文档搜索
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const searchTerm = document.getElementById('docSearch').value.toLowerCase();
+    // 实现搜索功能...
+  });
+}
