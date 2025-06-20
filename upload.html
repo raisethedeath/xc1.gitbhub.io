@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>上传视频</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>视频上传</h1>
+        <nav>
+            <button id="backBtn">返回首页</button>
+        </nav>
+    </header>
+
+    <main class="upload-container">
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="videoTitle">视频标题</label>
+                <input type="text" id="videoTitle" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="videoDescription">视频描述</label>
+                <textarea id="videoDescription" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="videoCategory">分类</label>
+                <select id="videoCategory" required>
+                    <option value="tutorial">教程</option>
+                    <option value="lecture">讲座</option>
+                    <option value="demo">演示</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="videoFile">选择视频文件</label>
+                <input type="file" id="videoFile" accept="video/mp4,video/webm" required>
+            </div>
+            
+            <div class="chapter-section">
+                <h3>章节设置</h3>
+                <div id="chaptersForm">
+                    <div class="chapter-item">
+                        <input type="text" placeholder="章节标题" class="chapter-title" required>
+                        <input type="number" placeholder="开始时间(秒)" min="0" class="chapter-time" required>
+                        <button type="button" class="remove-chapter">删除</button>
+                    </div>
+                </div>
+                <button type="button" id="addChapterBtn">添加章节</button>
+            </div>
+            
+            <button type="submit" id="submitBtn">上传视频</button>
+        </form>
+        
+        <div id="uploadStatus"></div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

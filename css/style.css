@@ -1,0 +1,258 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #34495e;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+header {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav button {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+    transition: background-color 0.3s;
+}
+
+nav button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+main {
+    display: flex;
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    gap: 2rem;
+}
+
+#playerSection {
+    flex: 3;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#chaptersSection {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.video-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000;
+}
+
+.video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    padding: 1.5rem;
+}
+
+.video-info h2 {
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.video-info p {
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+progress {
+    flex: 1;
+    height: 10px;
+    border-radius: 5px;
+}
+
+#chaptersContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.chapter-card {
+    background: var(--light-color);
+    padding: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.chapter-card:hover {
+    background: #d6dbdf;
+    transform: translateX(5px);
+}
+
+.chapter-card.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.chapter-card h4 {
+    margin-bottom: 0.3rem;
+}
+
+.chapter-card p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--dark-color);
+    color: white;
+    margin-top: 2rem;
+}
+
+/* 上传页面样式 */
+.upload-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.chapter-section {
+    border: 1px solid #eee;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.chapter-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0.8rem;
+    align-items: center;
+}
+
+.chapter-item input {
+    flex: 1;
+}
+
+.remove-chapter {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#addChapterBtn {
+    background: var(--success-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+#submitBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+#submitBtn:hover {
+    background: #2980b9;
+}
+
+#uploadStatus {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+    main {
+        flex-direction: column;
+    }
+    
+    #chaptersSection {
+        max-height: none;
+    }
+}

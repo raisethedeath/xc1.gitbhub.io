@@ -1,0 +1,31 @@
+[
+    {
+        "id": "1",
+        "title": "GitHub入门教程",
+        "description": "学习如何使用GitHub进行版本控制和协作开发",
+        "category": "tutorial",
+        "url": "https://example.com/videos/github-tutorial.mp4",
+        "chapters": [
+            {"title": "简介", "startTime": 0},
+            {"title": "创建仓库", "startTime": 60},
+            {"title": "提交更改", "startTime": 180},
+            {"title": "分支管理", "startTime": 300},
+            {"title": "协作流程", "startTime": 420}
+        ],
+        "duration": 600
+    },
+    {
+        "id": "2",
+        "title": "前端开发基础",
+        "description": "HTML、CSS和JavaScript基础教程",
+        "category": "lecture",
+        "url": "https://example.com/videos/frontend-basics.mp4",
+        "chapters": [
+            {"title": "HTML基础", "startTime": 0},
+            {"title": "CSS样式", "startTime": 150},
+            {"title": "JavaScript入门", "startTime": 300},
+            {"title": "DOM操作", "startTime": 450}
+        ],
+        "duration": 600
+    }
+]
