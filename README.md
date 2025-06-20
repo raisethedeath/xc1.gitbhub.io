@@ -1,14 +1,23 @@
-├── index.html              # 主页面
-├── docs.html               # Markdown文档中心
-├── videos.html             # 视频中心
-├── course.html             # 课程详情页（文档+视频整合）
+├── index.html                      # 主页
+├── simulations.html                # 模拟中心
+├── experiments.html                # 实验中心
+├── journal.html                    # 研究日志
+├── project-detail.html             # 项目详情页
 ├── css/
-│   ├── style.css           # 主样式
-│   └── markdown.css        # Markdown专用样式
+│   ├── style.css                   # 主样式
+│   ├── markdown.css                # Markdown样式
+│   └── dashboard.css               # 仪表板样式
 ├── js/
-│   ├── script.js           # 主脚本
-│   └── marked.min.js       # Markdown解析库
+│   ├── main.js                     # 主脚本
+│   ├── marked.min.js               # Markdown解析
+│   ├── highlight.min.js            # 代码高亮
+│   ├── video.min.js                # 视频播放器
+│   └── chart.min.js                # 图表库
 ├── data/
-│   ├── courses.json        # 课程数据
-│   └── docs/               # Markdown文档目录
-└── videos/                 # 视频存储目录
+│   ├── projects.json               # 项目数据
+│   ├── entries/                    # Markdown文档目录
+│   └── datasets/                   # 实验数据集(CSV)
+└── media/
+    ├── videos/                     # 模拟视频
+    ├── images/                     # 图表和截图
+    └── thumbnails/                 # 视频缩略图

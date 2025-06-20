@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Research Journal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <link rel="stylesheet" href="css/markdown.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏（同主页） -->
+    
+    <!-- 日志头部 -->
+    <header class="journal-header bg-gradient py-5 text-white">
+        <div class="container text-center">
+            <h1 class="display-4">Research Journal</h1>
+            <p class="lead">Details, Schedule and Thoughts</p>
+        </div>
+    </header>
+
+    <!-- 日志内容 -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- 侧边栏导航 -->
+                <div class="col-lg-3">
+                    <div class="sticky-top" style="top: 20px;">
+                        <div class="card mb-4">
+                            <div class="card-header bg-primary text-white">
+                                Classification
+                            </div>
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item list-group-item-action active" data-category="all">
+                                        全部日志
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="simulation">
+                                        模拟记录
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="experiment">
+                                        实验记录
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="analysis">
+                                        数据分析
+                                    </a>
+                                    <a href="#" class="list-group-item list-group-item-action" data-category="ideas">
+                                        研究想法
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header bg-info text-white">
+                                时间归档
+                            </div>
+                            <div class="card-body">
+                                <div id="journal-archive">
+                                    <!-- 动态生成归档 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 日志列表 -->
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between mb-4">
+                        <div class="d-flex align-items-center">
+                            <span class="me-2">排序:</span>
+                            <select class="form-select" id="sort-journal" style="width: auto;">
+                                <option value="newest">最新优先</option>
+                                <option value="oldest">最旧优先</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newEntryModal">
+                            <i class="bi bi-plus-lg"></i> 添加新记录
+                        </button>
+                    </div>
+                    
+                    <div id="journal-entries">
+                        <!-- 日志条目动态加载 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 日志详情模态框 -->
+    <div class="modal fade" id="journalModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="journalModalTitle">日志详情</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div id="entry-date" class="text-muted"></div>
+                        <div id="entry-category" class="badge bg-primary"></div>
+                    </div>
+                    <div id="journal-content" class="markdown-body"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary">编辑</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加新记录模态框 -->
+    <div class="modal fade" id="newEntryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">添加新记录</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="new-entry-form">
+                        <div class="mb-3">
+                            <label class="form-label">标题</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">分类</label>
+                            <select class="form-select" required>
+                                <option value="simulation">模拟记录</option>
+                                <option value="experiment">实验记录</option>
+                                <option value="analysis">数据分析</option>
+                                <option value="ideas">研究想法</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">日期</label>
+                            <input type="date" class="form-control" required value="<?php echo date('Y-m-d'); ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">内容 (Markdown格式)</label>
+                            <textarea class="form-control" rows="12" required></textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">保存记录</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="js/marked.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 加载日志数据
+        fetch('data/journal.json')
+            .then(response => response.json())
+            .then(data => renderJournalEntries(data));
+    </script>
+</body>
+</html>

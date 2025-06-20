@@ -3,47 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>视频学习平台</title>
+    <title>Experimental Records</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>交互式视频学习平台</h1>
-        <nav>
-            <button id="homeBtn">首页</button>
-            <button id="uploadBtn">上传视频</button>
-        </nav>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-cpu"></i> 物理系统研究
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="simulations.html">Numerical Simulation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="experiments.html">Experimental Records</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="journal.html">Research Journal</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 研究概览 -->
+    <header class="research-header bg-primary text-white py-5">
+        <div class="container text-center">
+            <h1 class="display-4">物理系统数值模拟与实验研究</h1>
+            <p class="lead">探索复杂物理系统的计算模型与实验验证</p>
+        </div>
     </header>
 
-    <main>
-        <section id="playerSection">
-            <div class="video-container">
-                <video id="videoPlayer" controls>
-                    <source src="" type="video/mp4">
-                    您的浏览器不支持视频播放
-                </video>
+    <!-- 研究项目展示 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">研究项目</h2>
+            <div class="row" id="projects-grid">
+                <!-- 项目卡片通过JS动态加载 -->
             </div>
-            <div class="video-info">
-                <h2 id="videoTitle">选择视频开始学习</h2>
-                <p id="videoDescription"></p>
-                <div class="progress-container">
-                    <label>学习进度:</label>
-                    <progress id="progressBar" value="0" max="100"></progress>
-                    <span id="progressText">0%</span>
+        </div>
+    </section>
+
+    <!-- 最新进展 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Progress</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-info text-white">
+                            <h5>Data Updates</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush" id="simulation-updates">
+                                <!-- 动态加载 -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white">
+                            <h5>Result And Discussion</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush" id="experiment-updates">
+                                <!-- 动态加载 -->
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="chaptersSection">
-            <h3>课程章节</h3>
-            <div id="chaptersContainer"></div>
-        </section>
-    </main>
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>物理系统研究记录</h5>
+                    <p>记录数值模拟与实验研究的进展与发现</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 xuchen2005@sjtu.edu.cn</p>
+                    <p>Deploying with GitHub Pages</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <!-- <footer>
-        <p>© 2023 视频学习平台 | 使用GitHub Pages部署</p>
-    </footer> -->
-
-    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // 加载项目数据
+        fetch('data/projects.json')
+            .then(response => response.json())
+            .then(data => renderProjects(data));
+        
+        // 加载最新更新
+        fetchLatestUpdates();
+    </script>
 </body>
 </html>
