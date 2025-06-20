@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .grid-item {
+    background: {{ item.color | default: "var(--grid-item-color)" }};
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .grid-item:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
+<div class="grid-container">
+  {% for item in site.grid_items %}
+    <a href="{{ item.url }}" class="grid-item">
+      <h3>{{ item.title }}</h3>
+    </a>
+  {% endfor %}
+</div>
