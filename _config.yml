@@ -1,0 +1,13 @@
+theme: minima
+plugins:
+  - jekyll-toc
+
+# 自定义变量
+sidebar: true            # 是否显示侧边栏
+grid_items:              # 网格布局项配置
+  - title: 项目1
+    url: /project1
+    color: "#6a89cc"
+  - title: 项目2
+    url: /project2
+    color: "#4a69bd"
