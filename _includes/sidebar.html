@@ -1,0 +1,15 @@
+<aside class="sidebar">
+  <h3>目录</h3>
+  <ul>
+    {% for item in site.pages %}
+      {% if item.title %}
+        <li>
+          <a href="{{ item.url | relative_url }}"
+             {% if page.url == item.url %}class="active"{% endif %}>
+            {{ item.title }}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</aside>
