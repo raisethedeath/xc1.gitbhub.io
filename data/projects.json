@@ -1,0 +1,76 @@
+[
+    {
+        "id": "fluid-dynamics",
+        "title": "湍流涡旋动力学研究",
+        "subtitle": "高雷诺数条件下的涡旋演化模拟",
+        "shortDescription": "研究复杂流体系统中的涡旋形成与相互作用",
+        "status": "进行中",
+        "startDate": "2023-03-15",
+        "thumbnail": "media/thumbnails/fluid-dynamics.jpg",
+        "descriptionFile": "data/projects/fluid-dynamics/description.md",
+        "simulationFile": "data/projects/fluid-dynamics/simulation.md",
+        "experimentFile": "data/projects/fluid-dynamics/experiment.md",
+        "analysisFile": "data/projects/fluid-dynamics/analysis.md",
+        "conclusionsFile": "data/projects/fluid-dynamics/conclusions.md",
+        "timeline": [
+            {
+                "date": "2023-03-15",
+                "description": "项目启动，文献调研"
+            },
+            {
+                "date": "2023-04-20",
+                "description": "完成数值模拟框架搭建"
+            },
+            {
+                "date": "2023-06-10",
+                "description": "初步模拟结果分析"
+            }
+        ],
+        "simulationVideos": [
+            {
+                "title": "雷诺数 Re=1000 的涡旋演化",
+                "file": "media/videos/vortex-re1000.mp4",
+                "description": "展示初始涡旋在流体中的演化过程"
+            },
+            {
+                "title": "涡旋相互作用模拟",
+                "file": "media/videos/vortex-interaction.mp4",
+                "description": "两个相反旋转涡旋的相互作用"
+            }
+        ],
+        "experimentSetup": "实验使用水槽装置，通过染料注入可视化流场...",
+        "experimentResults": "在特定条件下观察到稳定的涡旋对形成...",
+        "keyMetrics": [
+            {
+                "name": "涡旋强度",
+                "value": "0.45 ± 0.03"
+            },
+            {
+                "name": "能量耗散率",
+                "value": "1.2e-3 m²/s³"
+            }
+        ],
+        "chartData": {
+            "title": "涡旋强度随时间变化",
+            "labels": ["0s", "5s", "10s", "15s", "20s", "25s", "30s"],
+            "datasets": [
+                {
+                    "label": "涡旋核心强度",
+                    "data": [0.8, 0.75, 0.68, 0.62, 0.58, 0.55, 0.52]
+                }
+            ]
+        },
+        "scatterData": {
+            "label": "雷诺数 vs 涡旋寿命",
+            "xLabel": "雷诺数 (Re)",
+            "yLabel": "涡旋寿命 (s)",
+            "points": [
+                {"x": 500, "y": 15.2},
+                {"x": 800, "y": 12.8},
+                {"x": 1000, "y": 10.5},
+                {"x": 1200, "y": 8.7},
+                {"x": 1500, "y": 6.3}
+            ]
+        }
+    }
+]
