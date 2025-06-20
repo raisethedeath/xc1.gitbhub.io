@@ -1,0 +1,55 @@
+/* 变量定义 - 方便自定义 */
+:root {
+  --header-height: 25vh;    /* 标题区高度 */
+  --blur-intensity: 5px;   /* 背景模糊度 */
+  --button-color: #4a6fa5;  /* 按钮主色 */
+  --button-hover: #2e4e7c;  /* 按钮悬停色 */
+  --grid-item-color: #6d8bc4; /* 网格项颜色 */
+}
+
+/* 标题区样式 */
+.hero {
+  height: var(--header-height);
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+              url('assets/bg.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+/* 背景虚化效果 */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  filter: blur(var(--blur-intensity));
+  z-index: -1;
+}
+
+/* 导航栏样式 */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem 0;
+  background: var(--button-color);
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background: var(--button-hover);
+}
